@@ -108,7 +108,7 @@
         function getNextMove() {
             let code = document.getElementById('playing-code').value;
             let newMovePlayed = document.getElementById("new-move").value
-            playedMoves += newMovePlayed;
+            playedMoves += '/' + newMovePlayed;
             fetch('/' + code + '/' + playedMoves)
             .then( async (response)=>{
                 const body = await response.json();
