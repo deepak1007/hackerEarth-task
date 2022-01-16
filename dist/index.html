@@ -45,11 +45,11 @@
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div class="form-group mb-3">
                 <input type="text" class="form-control" id='playing-code' placeholder="enter code : ex A08" aria-label="playing-code" aria-describedby="button-addon2">
-                <input type="text" class="form-control" id='new-move' placeholder="enter move : ex b2" aria-label="new-move" aria-describedby="button-addon2">
+                <input type="text" class="form-control" id='new-move' placeholder="enter move : ex Nf3 (enter 1 move at a time starting from first move, not like Nf3/d5)" aria-label="new-move" aria-describedby="button-addon2">
             </div>
             <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getNextMove()">Button</button>
             <div class="api-details">
-                <li>api path /:code/*</li>
+                <li>api path <span id='api'></span></li>
             </div>
             <div id="get-next-move-result">
 
@@ -109,7 +109,8 @@
             let code = document.getElementById('playing-code').value;
             let newMovePlayed = document.getElementById("new-move").value
             playedMoves += '/' + newMovePlayed;
-            fetch('/' + code + '/' + playedMoves)
+            document.getElementById('api').innerHTML = '/' + code + playedMoves
+            fetch('/' + code + playedMoves)
             .then( async (response)=>{
                 const body = await response.json();
                 if(body.data && body.data.nextMove) {
