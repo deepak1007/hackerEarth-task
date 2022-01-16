@@ -1,0 +1,2 @@
+api : https://ecomoves-api.herokuapp.com/
+testpage ui : https://ecomoves-api.herokuapp.com/test-api
