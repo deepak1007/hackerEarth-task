@@ -92,6 +92,6 @@ app.get('/:code/*', async (req, res, next) => {
     }
 });
 app.listen(process.env.PORT || 8080, () => {
-    console.log("api is listening on ");
+    console.log("api is listening on ", process.env.PORT || 8080);
 });
 //# sourceMappingURL=index.js.map
