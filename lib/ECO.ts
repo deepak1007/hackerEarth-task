@@ -27,7 +27,7 @@ export class ECO {
       if(!this.validCache())
          this.ecoData = await this.fetchECOData();
 
-      return this.ecoData.find((data) => data.code === code);
+      return this.ecoData.find((data) => data.code === code.toLowerCase());
    }
 
    async getNextMove(code: string, playedMovesSequence: string) : Promise<string> {
@@ -40,7 +40,7 @@ export class ECO {
       const movesSequence : string = moveDetails.moves.join('/');
 
       // playedMovesSequence should start from index 0 of movesSequence and should be valid move sequence to be a substring of available move sequence.
-      if(movesSequence.indexOf(playedMovesSequence) !== 0) {
+      if(movesSequence.indexOf(playedMovesSequence.toLowerCase()) !== 0) {
          return "invalid-move-sequence"
       }
 
@@ -81,12 +81,12 @@ export class ECO {
          for(const element of fontTags[2].innerText.split(' ')) {
             const elementNum = Number(element);
             if(isNaN(elementNum)) {
-               moves.push(element)
+               moves.push(element.toLowerCase())
             }
          }
 
          ecoData.push({
-            code : fontTags[0].innerText,
+            code : fontTags[0].innerText.toLowerCase(),
             openingName,
             moves
          })

@@ -53,7 +53,6 @@ app.get('/:code', async (req, res, next) => {
 app.get('/:code/*', async (req, res, next) => {
     try {
         const code = req.params.code;
-        console.log(req.params);
         const playedMovesSequence = req.params[0];
         const nextMove = await ECOObj.getNextMove(code, playedMovesSequence);
         let response;
